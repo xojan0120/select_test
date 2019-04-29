@@ -1,26 +1,26 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react';
+import CreatableSelect from 'react-select/lib/Creatable';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const colourOptions = [
+  { value: 'chocolate', label: 'Chocolate' },
+  { value: 'strawberry', label: 'Strawberry' },
+  { value: 'vanilla', label: 'Vanilla' }
+];
+
+export default class CreatableMulti extends Component<*, State> {
+  handleChange = (newValue: any, actionMeta: any) => {
+    console.group('Value Changed');
+    console.log(newValue);
+    console.log(`action: ${actionMeta.action}`);
+    console.groupEnd();
+  };
+  render() {
+    return (
+      <CreatableSelect
+        isMulti
+        onChange={this.handleChange}
+        options={colourOptions}
+      />
+    );
+  }
 }
-
-export default App;
